@@ -2,13 +2,14 @@ import React from 'react';
 import { Group, Rect, Text } from 'react-konva';
 
 interface Props {
+  id: number;
   x: number;
   y: number;
   title: string;
   content: string;
   color: string;
   updatedDate: string;
-  onClick: (event: any) => void;
+  toggleShowModal: (event: any) => void;
 }
 
 const LENGTH = {
@@ -23,20 +24,21 @@ const POSITION = {
 };
 
 const Postit: React.FC<Props> = ({
+  id,
   x,
   y,
   title,
   content,
   color,
   updatedDate,
-  onClick,
+  toggleShowModal,
 }) => {
   return (
-    <Group x={x} y={y} draggable={true}>
+    <Group postId={id} x={x} y={y} draggable={true}>
       <Rect width={LENGTH.WIDTH} height={LENGTH.HEIGHT} fill={color} />
       <Group>
         <Text text={title}></Text>
-        <Text onClick={onClick} x={LENGTH.WIDTH - 20} text="..."></Text>
+        <Text onClick={toggleShowModal} x={LENGTH.WIDTH - 20} text="..."></Text>
       </Group>
       <Group y={POSITION.CONTENT_Y}>
         <Text text={content} width={LENGTH.WIDTH} />

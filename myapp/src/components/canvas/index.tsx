@@ -1,14 +1,13 @@
 import React from 'react';
 import Postit from '../postit';
-import { useRecoilValue } from 'recoil';
-import { postits } from '../../store/atom';
 import { Stage, Layer } from 'react-konva';
 
-const Canvas: React.FC = () => {
-  const post = useRecoilValue(postits);
-  function handleClick() {
-    console.log('modal');
-  }
+interface Props {
+  post: any[];
+  toggleShowModal: (event: any) => void;
+}
+
+const Canvas: React.FC<Props> = ({ post, toggleShowModal }) => {
   return (
     <Stage width={1000} height={800}>
       <Layer>
@@ -16,13 +15,14 @@ const Canvas: React.FC = () => {
           return (
             <Postit
               key={pp.key}
+              id={pp.key}
               x={pp.x}
               y={pp.y}
               title={pp.title}
               content={pp.content}
               color={pp.color}
               updatedDate={pp.updatedDate}
-              onClick={handleClick}
+              toggleShowModal={toggleShowModal}
             />
           );
         })}
