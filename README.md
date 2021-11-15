@@ -1,2 +1,2 @@
 # konva
-this is the repository to study 'konva.js'
+this is the repository for studying 'konva.js'
